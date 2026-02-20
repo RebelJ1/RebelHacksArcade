@@ -1,4 +1,4 @@
-#include "Game_2.h"
+#include "LuckyGuess.h"
 using namespace std;
 
 int RandomNumber;
