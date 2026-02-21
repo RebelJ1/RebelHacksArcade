@@ -380,7 +380,7 @@ void runGame(double& credits) {
               pokerTurn = 2;
             }
           if(!disableWarning)
-            cout << "You do not have any cards selected!";
+            cout << "You do not have any cards selected!\n";
           break;
         case 7://skips the redraw turn entirely
           pokerTurn = 3;
