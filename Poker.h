@@ -18,7 +18,7 @@ using namespace std;
 #define SPADES   "♠"
 
 #define RED        "\033[31m"
-#define BLACK      "\033[30m"
+#define BLACK      "\033[0m"
 #define RESETCOLOR "\033[0m"
 
 string POKER_LOGO = R"(                                                                              
