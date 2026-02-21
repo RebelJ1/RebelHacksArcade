@@ -76,7 +76,7 @@ string SlotsTitle = R"(
                                                                           '--' '--'                                                                                              
 )";
 string LineDividerMain = "----------------------------------------------------------------------------------------------------\n";
-string LineDividerBonus = "------------------------------------------------------------------------------------\n";
+string LineDividerBonus = "------------------------------------------------------------------------------------";
 string LineDividerRebirth = "---------------------------------------------------------------------------------\n";
 string LineDividerFAQ =  "--------------------------------------------------------------------\n";
 string LineDividerSuccess = "-----------------------------------------------------------\n";
@@ -115,13 +115,6 @@ string Correct = R"(
 ██      ██    ██ ██   ██ ██   ██ ██      ██         ██    
  ██████  ██████  ██   ██ ██   ██ ███████  ██████    ██    
 )";
-/*
-  ____   ___   ____   ____   _____   ____  _____ 
- / ___| / _ \ |  _ \ |  _ \ | ____| / ___||_   _|
-| |    | | | || |_|| | |_|| |  _|  | |      | |  
-| |___ | |_| || _ <  | _ <  | |___ | |___   | |  
- \____/ \___/ |_|\_\ |_|\_\ \_____| \____/  |_|
-*/
 string Wrong = R"(
 ██     ██ ██████   ██████  ███    ██  ██████  
 ██     ██ ██   ██ ██    ██ ████   ██ ██       
@@ -129,19 +122,17 @@ string Wrong = R"(
 ██ ███ ██ ██   ██ ██    ██ ██  ██ ██ ██    ██ 
  ███ ███  ██   ██  ██████  ██   ████  ██████  
 )";
-
-
 bool RebirthAction(){
     bool Choice = true;
     int Chosen;
     while (Choice == true){
         ClearScreen();
-        cout << RebirthTitle << endl;
-        cout << LineDividerRebirth;
-        cout << "Do You Wish To Rebirth for " << RebirthCost << " Credits? (Enter A Number)\n" 
+        cout << RebirthTitle << "\n"
+             << LineDividerRebirth
+             << "Do You Wish To Rebirth for " << RebirthCost << " Credits? (Enter A Number)\n" 
              << "--------------------------------------------------------------------------\n"
              << "1. Yes\n" << "2. No\n" << "3. Help (FaQ)\n" 
-             << "--------------------------------------------------------------------------\n" << endl;
+             << "--------------------------------------------------------------------------\n\n";
         cin >> Chosen;
         switch (Chosen){
             case 1:{
@@ -157,20 +148,19 @@ bool RebirthAction(){
                 while (Answer != "done" || Answer != "Done"){
                     //Prints the FAQ Screen
                     ClearScreen();
-                    cout << FAQTitle << LineDividerFAQ;
-                    cout << "What Is A Rebirth?: \n"
+                    cout << FAQTitle << LineDividerFAQ
+                         << "What Is A Rebirth?: \n"
                          << "A Rebirth Is Something That Will Reset Your Credits And When Done, It Cannot Be Undone.\n"
-                         << " In Return You Will Gain 1x More Credits, But Will Need 2x More To Rebirth Again."
-                         << " Now That You Know What A Rebirth Is, Type 'Done' To Go Back.\n"
-                         << " Happy Gambling!!\n" << LineDividerFAQ;
+                         << "In Return You Will Gain 1x More Credits, But Will Need 2x More To Rebirth Again.\n"
+                         << "Now That You Know What A Rebirth Is, Type 'Done' To Go Back.\n"
+                         << "Happy Gambling!!\n" << LineDividerFAQ;
                     cin >> Answer; //Taking User Input
                     //Evaluating User Input
-                    if (Answer == "Done" || "done"){
+                    if (Answer == "Done" || "done")
                         break;
-                    }
                     else {
                         cout << "\nInvalid Answer";
-                        PrintDots();
+                        PrintDots(3);
                         continue;
                     }
                 }
@@ -178,35 +168,36 @@ bool RebirthAction(){
             default:
                 //Connects to Choice 1,2,3 Invalid
                 cout << "Invalid Answer";
-                PrintDots();
+                PrintDots(3);
                 continue;     
         }
     }
+    return false;
 }
 
 int SlotMachine (){
     int Sequence[3] = {1, 1, 1};
     ClearScreen();
-    cout << SlotsTitle << "\n" << LineDividerBonus;
+    cout << SlotsTitle << LineDividerBonus << endl;
     for (int i = 1; i < 6; i++){
-        for (int g = 0; i < 3; i++){
+        for (int g = 0; g < 3; g++){
             Sequence[g] = rand()%9+1;
         }
-        cout << "Number" << i << ": " << Sequence[0] << Sequence[1] << Sequence[2] << endl;
-        Wait(0.7);
+        cout << "Number " << i << ": " << Sequence[0] << Sequence[1] << Sequence[2] << endl;
+        Wait(1);
     }
     int a = Sequence[0]; int b = Sequence[1]; int c = Sequence[2];
-    cout << LineDividerBonus << Bold << "Your Number Is: " << a << b << c << ResetText << endl;
+    cout << LineDividerBonus << Bold << "\nYour Number Is: " << a << b << c << ResetText << endl;
     if (a == b && b == c){
-        cout << LineDividerBonus << Jackpot << LineDividerBonus;
-        return 100*(Rebirths + 1)*(Streak-1);
+        cout << LineDividerBonus << Jackpot << LineDividerBonus << endl;
+        return 100*(Rebirths + 1);
     }
     else if (a == b || a == c || b == c){
-        cout << LineDividerBonus << Pair << LineDividerBonus;
+        cout << LineDividerBonus << Pair << LineDividerBonus << endl;
         return 30*(Rebirths + 1);
     }
     else {
-        cout << LineDividerBonus << NoBonus << LineDividerBonus;
+        cout << LineDividerBonus << NoBonus << LineDividerBonus << endl;
         return 10*(Rebirths + 1);
     }
 }
@@ -239,27 +230,28 @@ void LuckyGuessGame(double& credits){
                         ClearScreen();
                         cout << Success << LineDividerSuccess 
                              << "Credits: " << credits << "\nRebirths: " << Rebirths 
-                             << "\nMultiplier: " << Rebirths + 1 << LineDividerSuccess;
+                             << "\nMultiplier: " << Rebirths + 1 << "\n" << LineDividerSuccess;
                         cout << "Closing";
-                        PrintDots(); PrintDots(); continue;
+                        PrintDots(5); continue;
                     }
                     else continue;
                 }
                 
             }
-            cerr << "\nThe Input '" << ChosenNumber << "' Is Invalid";
-            PrintDots();
+            cerr << "The Input '" << ChosenNumber << "' Is Invalid";
+            PrintDots(3);
             continue;
         }
         catch (const out_of_range& e) {
-            cerr << "\nThe Number '" << ChosenNumber << "' Is Out Of Range";
-            PrintDots();
+            cerr << "The Number '" << ChosenNumber << "' Is Out Of Range";
+            PrintDots(3);
             continue;
         }
         //MAIN GAME
+        bool PrevCorrect = false;
         int TheNumber = stoi(ChosenNumber);
         if (TheNumber > 0 && TheNumber < 4){
-            cout << "Loading"; PrintDots();
+            cout << LineDividerMain << "Loading"; PrintDots(3);
             if (TheNumber == RandomNumber){//Checks If Right Number Is Guessed
                 int Gained = 0;
                 auto StreakBoost = [](int streak){//A Lambda To Calculate Streak Multiplier
@@ -271,49 +263,55 @@ void LuckyGuessGame(double& credits){
                 ClearScreen();
                 cout << "\n" << LineDividerMain << Green << Correct << ResetText << LineDividerMain;
                 cout << "YOU WON!!!";
-                Wait(1.5);
-                if (Streak > 1){//On A Streak
-                  Gained = SlotMachine()*StreakBoost(Streak);
-                  credits += Gained;//Adds Credits
-                  cout << "\n------------------------------"
-                       << "\nCredits Earned: " << Gained
-                       << "\nTotal Credits: " << credits
-                       << "\nStreak: " << Streak
-                       << "\n------------------------------"
-                       << "\nReloading";
-                  PrintDots(); PrintDots();
-                  continue;
+                if (Streak >= 1){//On A Streak
+                    cout << "\n------------------------------\n"
+                         << "Loading Bonus"; PrintDots(4);
+                    Gained = SlotMachine()*StreakBoost(Streak);
+                    credits += Gained;//Adds Credits
+                    Streak++;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Credits Earned: " << Gained
+                         << "\nTotal Credits: " << credits
+                         << "\nStreak: " << Streak
+                         << "\n------------------------------"
+                         << "\nHit [Enter] To Continue.";
+                    if (cin.get())
+                        continue;
                 }
                 else{//Default No Previous Streak
                   Gained = (10*(Rebirths + 1)*StreakBoost(Streak));
                   credits += Gained;//Adds Credits
+                  Streak++;
+                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
                   cout << "\n------------------------------"
                        << "\nCredits Earned: " << Gained
                        << "\nTotal Credits: " << credits
                        << "\nStreak: " << Streak
                        << "\n------------------------------"
-                       << "\nReloading";
-                  PrintDots(); PrintDots();
+                       << "\nHit [Enter] To Continue.";
+                    if (cin.get())
+                        continue;
                   continue;
                 }
             }
             else{//The Number Was Wrong
                 ClearScreen();
                 cout << "\n" << LineDividerMain << Red << Wrong << ResetText << LineDividerMain;
-                cout << "Try Again :(\n" << "Reloading";
-                PrintDots();
+                Streak = 0;
+                cout << "Try Again :(\n" << LineDividerMain << "Reloading";
+                PrintDots(3);
                 continue;
             }
         }
         else{
             cout << "\nThe Input '" << ChosenNumber << "' Is Invalid";
-            PrintDots();
+            PrintDots(3);
             continue;
         }
     }
     
     cout << "\nExiting Game";
-    PrintDots();
+    PrintDots(3);
     ClearScreen();
     return;
 }
