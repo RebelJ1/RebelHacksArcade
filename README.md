@@ -20,5 +20,5 @@ Have fun!! :)
   
 Contributors:  
 Sulaiman - Lucky Guess Game Full Implementation  
-Jayden - Poker Game and Art Implementation  
+Jayden - Art and Poker Game Implementation  
 Matthew - Main Menu Logic, Voucher System, and Poker Game Implementation  
