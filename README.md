@@ -17,3 +17,8 @@ LuckyGuess.h - handles the Lucky Guess game
 General.h - general functions  
 voucher.txt - a text file with a single floating point number with up to 2 decimal places  
 Have fun!! :)  
+
+Contributors:
+Sulaiman - Lucky Guess Game Implementation
+Jayden - Poker Game and ASCII Art Implementation
+Matthew - Main Menu Logic and Poker Game Implementation
