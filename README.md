@@ -19,6 +19,6 @@ voucher.txt - a text file with a single floating point number with up to 2 decim
 Have fun!! :)  
   
 Contributors:  
-Sulaiman - Lucky Guess Game Implementation  
-Jayden - Poker Game and ASCII Art Implementation  
-Matthew - Main Menu Logic and Poker Game Implementation  
+Sulaiman - Lucky Guess Game Full Implementation  
+Jayden - Poker Game and Art Implementation  
+Matthew - Main Menu Logic, Voucher System, and Poker Game Implementation  
